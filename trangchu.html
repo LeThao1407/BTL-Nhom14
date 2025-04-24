@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>FMarket - Trang Chủ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      height: 80px;
+      background: #040404;
+      display: flex;
+      align-items: center;
+      color: white;
+      z-index: 1000;
+      position: sticky;
+      top: 0;
+    }
+
+    .navbar {
+      width: 90%;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar strong {
+      color: rgb(15, 219, 49);
+      font-size: 36px;
+      font-family: Satisfy;
+      font-style: italic;
+    }
+
+    .navbar nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #c8e6c9;
+    }
+
+    .search-container {
+      position: relative;
+    }
+
+    .search-icon {
+      color: white;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    .slideshow-container {
+      width: 100%;
+      overflow: hidden;
+      height: 500px;
+      position: relative;
+      height: calc(100vh - 80px);
+    }
+
+    .slides-wrapper {
+      display: flex;
+      width: 200%;
+      transition: transform 1s ease;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #040404;
+      min-width: 150px;
+      display: none;
+      flex-direction: column;
+      z-index: 999;
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .dropdown-menu a {
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: block;
+      white-space: nowrap;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #2e7d32;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: flex;
+    }
+
+    .banner{
+      background-color: #2e7d32; 
+      color: white; 
+      text-align: center; 
+      padding: 20px 0; 
+      width: 100%; 
+      margin-top: 20px; 
+    }
+    .banner p{
+      font-size: 18px; 
+      font-weight: 600; 
+      font-style: italic
+    }
+    .section {
+      width: 90%;
+      margin: 40px auto;
+      text-align: center;
+    }
+
+    .section p {
+      margin-bottom: 10px;
+      color: #2e7d32;
+      font-style: italic;
+      font-size: 16px;
+    }
+
+    .section h2 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      color: #1b1b1b;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      justify-items: center;
+      margin-top: 30px;
+    }
+
+    .product {
+      display: grid;
+      background: white;
+      width: 300px;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product h3 {
+      margin-top: 10px;
+      color: #2e7d32;
+    }
+
+    footer {
+      background: #020202;
+      color: white;
+      text-align: center;
+      padding: 25px 0;
+      margin-top: 60px;
+    }
+
+    .detail-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: #2e7d32;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+
+    .detail-btn:hover {
+      background-color: #1b5e20;
+    }
+
+    .see-more-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #2e7d32;
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .see-more-btn:hover {
+      background-color: #1b5e20;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .products {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <div><strong>FMarket</strong></div>
+    <nav>
+      <a href="#">Trang chủ</a>
+      <a href="#">Giới thiệu</a>
+        <div class="dropdown">
+          <a href="#">Sản phẩm</a>
+          <div class="dropdown-menu">
+            <a href="#">Thịt Bò</a>
+            <a href="#">Thịt heo</a>
+            <a href="#">Thịt cừu</a>
+            <a href="#">Cá hồi</a>
+            <a href="#">Thủy hải sản</a>
+            <a href="#">Golden Wagyu</a>
+            <a href="#">Sản phẩm khác</a>
+          </div>
+        </div>
+        <a href="#">Hệ thống phân phối</a>
+      <a href="#">Liên hệ</a>
+    </nav>
+    <div class="search-container" id="searchContainer">
+      <span class="material-icons search-icon" id="searchIcon">search</span>
+    </div>
+  </div>
+</header>
+
+<div class="slideshow-container">
+  <div class="slides-wrapper">
+    <div class="slide"><img src="thitbo.jpg" alt="Slide 1"></div>
+    <div class="slide"><img src="thitnuong.jpg" alt="Slide 2"></div>
+  </div>
+</div>
+
+<div class="banner">
+  <p>FMarket cam kết mang đến thực phẩm tươi sạch, an toàn và chất lượng mỗi ngày.</p>
+</div>
+
+
+<div class="section">
+  <h2>Sản phẩm nổi bật</h2>
+  <div class="products">
+    <div class="product">
+      <img src="bittetbo.jpg" alt="Lõi vai Bò">
+      <h3>Lõi vai Bò</h3>
+      <a href="#" class="detail-btn">Chi tiết</a>
+    </div>
+    <div class="product">
+      <img src="luclacbo.jpg" alt="Lúc lắc Bò">
+      <h3>Lúc lắc Bò</h3>
+      <a href="#" class="detail-btn">Chi tiết</a>
+    </div>
+    <div class="product">
+      <img src="cahoi.jpg" alt="Cá hồi">
+      <h3>Cá hồi khói lạnh</h3>
+      <a href="#" class="detail-btn">Chi tiết</a>
+    </div>
+    <div class="product">
+      <img src="cahoituoi.jpg" alt="Cá hồi">
+      <h3>Cá hồi tươi nguyên con</h3>
+      <a href="#" class="detail-btn">Chi tiết</a>
+    </div>
+    <div class="product">
+      <img src="cahoidonglanh.jpg" alt="Cá hồi">
+      <h3>Cá hồi đông lạnh</h3>
+      <a href="#" class="detail-btn">Chi tiết</a>
+    </div>
+    <div class="product">
+      <img src="duiboumuoi.png" alt="Cá hồi">
+      <h3>Đùi bò ủ muồi</h3>
+      <a href="#" class="detail-btn">Chi tiết</a>
+    </div>
+  </div>
+  <div style="margin-top: 20px;">
+    <a href="#" class="see-more-btn">Xem thêm &gt;&gt;</a>
+  </div>  
+</div>
+
+<footer>
+  <p>&copy; 2025 FMarket. All rights reserved.</p>
+  <p>Email: contact@fmarket.vn | Hotline: 0123 456 789</p>
+</footer>
+
+<script>
+  let slideIndex = 0;
+  const wrapper = document.querySelector('.slides-wrapper');
+  const totalSlides = document.querySelectorAll('.slide').length;
+
+  const showSlides = () => {
+    slideIndex = (slideIndex + 1) % totalSlides;
+    wrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
+    setTimeout(showSlides, 3000);
+  };
+
+  showSlides();
+</script>
+
+<script>
+  const searchIcon = document.getElementById('searchIcon');
+  const searchContainer = document.getElementById('searchContainer');
+  let inputExists = false;
+
+  searchIcon.addEventListener('click', () => {
+    if (!inputExists) {
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.placeholder = 'Tìm kiếm...';
+      input.className = 'search-input';
+      input.style.position = 'absolute';
+      input.style.top = '50%';
+      input.style.transform = 'translateY(-50%)';
+      input.style.right = '35px';
+      input.style.padding = '6px 12px';
+      input.style.borderRadius = '20px';
+      input.style.border = 'none';
+      input.style.outline = 'none';
+      input.style.fontSize = '14px';
+      searchContainer.appendChild(input);
+      input.focus();
+      inputExists = true;
+    }
+  });
+</script>
+
+</body>
+</html>
